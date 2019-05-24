@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+    dgd-build:
+        image: francipvb/dgd
+        build:
+            context: .
+            dockerfile: dgd.Dockerfile
+
+    server:
+        image: francipvb/server
+        build:
+            context: .
+            dockerfile: server.Dockerfile
+
+        depends_on:
+        - dgd-build
+
+        ports:
+        - "8080:8080"
+        - "8023:8023"
+        - "5001:5001"
+
+        volumes:
+            - "server-state:/app/state"
+
+volumes:
+    server-state:
