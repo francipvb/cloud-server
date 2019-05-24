@@ -2183,6 +2183,7 @@ static void cmd_reboot(object user, string cmd, string str)
     if (!access(owner, "/", FULL_ACCESS)) {
 	message("Permission denied.\n");
     } else {
+	write_file("/.reboot", "Delete this file to ensure the server is not restarted.");
 	::dump_state(TRUE);
 	::shutdown();
     }

@@ -94,8 +94,9 @@ FIRST_TIME="y"
 while [ "x$STOP_DGD" = "xn" ]; do
 	if ! dgd_running; then
 		# check if we have to restart dgd
-		if [ -f "$BASE_DIR/mud/kernel/data/.reboot" ]; then
+		if [ -f "$BASE_DIR/mud/.reboot" ]; then
 			start_dgd
+			rm -f "$BASE_DIR/mud/.reboot"
 		else
 			if [ "x$FIRST_TIME" = "xy" ]; then
 				FIRST_TIME="n"
