@@ -1,0 +1,6 @@
+version: "3.4"
+
+services:
+    server:
+        volumes:
+            - "./src:/app/mud"
